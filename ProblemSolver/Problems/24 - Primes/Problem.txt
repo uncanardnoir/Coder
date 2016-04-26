@@ -1,0 +1,22 @@
+# Problem Description
+A prime number is a number $P$ that is divisible only by 1 and itself (by definition, 1 is not prime). One way to test if a number is prime is to try to divide it by every number between 2 and $P-1$. For instance, for 17:
+
+17 divided by 2 has a remainder of 1
+17 divided by 3 has a remainder of 2
+17 divided by 4 has a remainder of 1
+17 divided by 5 has a remainder of 2
+...
+17 divided by 16 has a remainder of 1
+
+Because no number between 2 and 16 divides evenly into 17, it is prime. Actually, it is sufficient to only check every number $x$ where $2 \le x \le \sqrt{P}$. This is because if $P$ is not prime, at least one of its factors must be less than or equal to $\sqrt{P}$. (Can you prove why this is?). With these facts in mind, write a function taking a positive integer as an input and returning true if it is prime and false otherwise.
+%%%
+# Input Parameter
+System.Int32
+# Max input size
+0
+# Output Parameter
+System.Boolean
+# Sample Input
+17
+# Sample Output
+true

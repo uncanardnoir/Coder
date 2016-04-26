@@ -1,0 +1,13 @@
+# Problem Description
+Given an array of at most 100 integers $a_1, a_2, a_3, ... a_n$, write a method that returns the sum of their squares: $a_1^2 + a_2^2 + a_3^2 + ... + a_n^2$.
+%%%
+# Input Parameter
+System.Int32[]
+# Max input size
+100
+# Output Parameter
+System.Int32
+# Sample Input
+[0, 1, 2, 4, 10]
+# Sample Output
+121

@@ -1,0 +1,13 @@
+# Problem Description
+Given an array of up to 2000 integers (which can be zero or negative), let $S$ represent the sum of all integers which are even. Let $N$ represent the number of integers which are even. Return true if $S$ is greater than $N$, and false otherwise. For instance, with the array $[4, 13, -2, 0, 15]$, there are $N = 3$ numbers which are even: 4, -2 and 0. The sum of these three numbers is $S = 2$. Because $S \le N$, the answer is false.
+%%%
+# Input Parameter
+System.Int32[]
+# Max input size
+2000
+# Output Parameter
+System.Boolean
+# Sample Input
+[4, 13, -2, 0, 15]
+# Sample Output
+false

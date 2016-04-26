@@ -1,0 +1,13 @@
+# Problem Description
+Some words have more vowels than consonants, such as "ukulele". Given an input string of an Engine word, return true if it has more vowels than consonants, and false otherwise.
+%%%
+# Input Parameter
+System.String
+# Max input size
+0
+# Output Parameter
+System.Boolean
+# Sample Input
+ukulele
+# Sample Output
+true

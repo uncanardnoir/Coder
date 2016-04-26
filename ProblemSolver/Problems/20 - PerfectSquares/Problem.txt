@@ -1,0 +1,15 @@
+# Problem Description
+A number $N$ is a perfect square if there is another number $M$ where $M \times M = N$. For instance, 4 and 9 are perfect squares because $2 \times 2$ = 4 and $3 \times 3 = 9$. But 17 and 10 are not perfect squares.
+
+One way to tell if a number is a perfect square or not is to try squaring increasingly large numbers until the number is found, or the square becomes too large. For instance, if we wanted to know if 17 is a perfect square, we would try: $$1 \times 1 = 1, 2 \times 2 = 4, 3 \times 3 = 9, 4 \times 4 = 16, 5 \times 5 = 25$$ 25 is bigger than 17 so we've gone too far, and we didn't see 17 in our list of perfect squares $(1, 4, 9, 16, 25)$, so we can deduce that 17 is not a perfect square. Using this technique, write a method that takes in an integer between 1 and 20000 and returns true if it is a perfect square and false otherwise.
+%%%
+# Input Parameter
+System.Int32
+# Max input size
+20000
+# Output Parameter
+System.Boolean
+# Sample Input
+17
+# Sample Output
+false

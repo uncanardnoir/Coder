@@ -1,0 +1,15 @@
+# Problem Description
+A bull market describes a market where stock prices are going up. A bear market describes a market where stock prices are going down. Given the prices of the stock market from year-to-year, a year where stock prices increased is a bull year, and a year where stock prices decreased is a bear year (a year where prices remained flat is neither).
+
+Given an array of up to 1000 integers representing the market price from year-to-year, determine the number of bull years it had. For instance, if the array is $[10000, 15000, 14700, 14500, 14600, 14650]$, there are 3 bull years (10000 to 15000, 14500 to 14600, and 14600 to 14650).
+%%%
+# Input Parameter
+System.Int32[]
+# Max input size
+1000
+# Output Parameter
+System.Int32
+# Sample Input
+[10000, 15000, 14700, 14500, 14600, 14650]
+# Sample Output
+3

@@ -1,0 +1,13 @@
+# Problem Description
+A palindrome is a word that is spelled the same forwards and backwards. For instance "civic" and "noon" are palindrome. Given an English word in all lowercase, return true if it is a palindrome and false otherwise.
+%%%
+# Input Parameter
+System.String
+# Max input size
+0
+# Output Parameter
+System.Boolean
+# Sample Input
+level
+# Sample Output
+true

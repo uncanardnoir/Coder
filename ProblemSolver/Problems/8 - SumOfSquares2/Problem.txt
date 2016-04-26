@@ -1,0 +1,13 @@
+# Problem Description
+Given a positive integer n between 1 and 20, return the sum of squares $1^2 + 2^2 + 3^2 + ... + n^2$. For instance, for n = 3 the answer is $1^2 + 2^2 + 3^2 = 14$.
+%%%
+# Input Parameter
+System.Int32
+# Max input size
+20
+# Output Parameter
+System.Int32
+# Sample Input
+3
+# Sample Output
+14

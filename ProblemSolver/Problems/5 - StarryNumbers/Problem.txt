@@ -1,0 +1,15 @@
+# Problem Description
+A Starry number is a number which is NOT divisible by 7, NOT divisible by 11, and divisible by 3. For instance, 6 is a Starry Number because it is divisible by 3 but not 7 or 11. But 21 and 77 are not Starry Numbers.
+
+Given an array input of up to 300 integers, return a integer representing the total number of Starry Numbers in the array.
+%%%
+# Input Parameter
+System.Int32[]
+# Max input size
+300
+# Output Parameter
+System.Int32
+# Sample Input
+[0, 3, 6, 7, 11, 21, 77]
+# Sample Output
+2
