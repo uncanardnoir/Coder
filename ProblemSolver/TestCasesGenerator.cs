@@ -207,6 +207,10 @@ namespace ProblemSolver
             {
                 return obj.ToString();
             }
+            else if (t == typeof(double))
+            {
+                return double.Parse(obj);
+            }
             else
             {
                 Debug.Assert(false);

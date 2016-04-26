@@ -174,5 +174,10 @@ namespace ProblemSolver
             }
             tsmi.Enabled = value;
         }
+
+        public static bool ApproximatelyEqual(this double d1, double d2, double epsilon = 0.000001)
+        {
+            return Math.Abs(d1 - d2) < epsilon;
+        }
     }
 }

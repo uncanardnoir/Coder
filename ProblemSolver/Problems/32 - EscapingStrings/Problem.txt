@@ -1,0 +1,30 @@
+# Problem Description
+Sometimes, when using a string in certain scenarios, it is first necessary to prepare it in a certain way so that the other program can understand it correctly. For instance, consider this C# code:
+
+string quote = "A wise man once said, "Live free or die trying".";
+
+This doesn't do what the programmer intends it to do, because the compiler will interpret the quotation mark at the beginning of the quote as the end of the string. The rule is that every quotation mark that <i>isn't</i> the end of the string must be preceded by a backslash:
+
+string quote = "A wise man once said, \"Live free or die trying\".";
+
+This is called <i>escaping the string</i>. Different programs and languages have slightly different rules for escaping, but some common ones are:
+1. Every quotation mark (") is preceded by a backslash <b>\"</b>
+2. Every single quotation mark (') is preceded by a backslash: <b>\'</b>
+3. Every question mark (?) is preceded by a backslash: <b>\?</b>
+4. Every tab character (	) is represented as <b>\t</b>
+5. Every backslash (\) is represented as two backslashes <b>\\</b>
+
+The fifth rule is very important, because without it, it's not clear if <b>\"</b> represents an escaped quotation mark, or a backslash followed by the end of the string. With the fifth rule, <b>\"</b> always represents an escaped quotation mark, and <b>\\"</b> represents a backslash followed by the end of the string.
+
+Given an input string, escape it using the five rules above and return the escaped string.
+%%%
+# Input Parameter
+System.String
+# Max input size
+0
+# Output Parameter
+System.String
+# Sample Input
+Who said the quote, "Live free or die trying"?
+# Sample Output
+Who said the quote, \"Live free or die trying\"\?

@@ -197,7 +197,6 @@ namespace ProblemSolver
             var assemblyContainingClass = Path.GetFileName(Assembly.GetExecutingAssembly().Location);
             options.ReferencedAssemblies.Add(assemblyContainingClass);
             options.ReferencedAssemblies.Add("System.dll");
-            options.ReferencedAssemblies.Add("System.Windows.Forms.dll");
             var results = provider.CompileAssemblyFromSource(options, new[] { source });
             if (results.Errors.Count > 0)
             {
@@ -285,8 +284,9 @@ namespace ProblemSolver
         public void SampleCaseCallback(long elapsedMilliseconds, object result)
         {
             richTextBox1.AppendText(string.Format("\r\n\r\nThe expected output was: {0}", currentProblem.SampleOutputString), Color.Black, true);
-            richTextBox1.AppendText(string.Format("\r\nThe output from your method was: {0}", result.ToString()), Color.Black, true);
-            if (currentProblem.SampleOutput.Equals(result))
+            richTextBox1.AppendText(string.Format("\r\nThe output from your method was: {0}", result == null ? "(null)" : result.ToString()), Color.Black, true);
+            if ((currentProblem.outputParameter == typeof(double) && ((double)result).ApproximatelyEqual((double)currentProblem.SampleOutput)) ||
+                currentProblem.SampleOutput.Equals(result))
             {
                 richTextBox1.AppendText(string.Format("\r\nCongratulations, your method passed the sample case! [{0} seconds]", (double)elapsedMilliseconds / 1000), Color.DarkGreen, true);
             }
@@ -309,7 +309,7 @@ namespace ProblemSolver
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Created by Michael Ty - abigbottleoforangina@gmail.com.\n\nThis program and all accompanying test files are made freely available with no warranty under the MIT License (https://opensource.org/licenses/MIT)");
+            MessageBox.Show("Created by uncanardnoir (Github) / 4A18B156 (Reddit).\r\n\r\nThis program and all accompanying test files are made freely available with no warranty under the MIT License (https://opensource.org/licenses/MIT)");
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -451,7 +451,8 @@ namespace ProblemSolver
             TestCase tc = globalTestCases[lastRunTest];
 
             richTextBox1.InvokeAppendText(string.Format("\r\nTest case {0}: ", lastRunTest));
-            if (tc.ExpectedOutput.Equals(result))
+            if ((currentProblem.outputParameter == typeof(double) && ((double)result).ApproximatelyEqual((double)tc.ExpectedOutput)) ||
+                tc.ExpectedOutput.Equals(result))
             {
                 richTextBox1.AppendText(string.Format("PASS [{0} seconds]", (double)elapsedMilliseconds / 1000), Color.DarkGreen, true);
             }

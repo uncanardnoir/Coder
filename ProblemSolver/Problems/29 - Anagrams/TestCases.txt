@@ -1,0 +1,9 @@
+caters;reacts
+aaa;aa
+healthy;healthy
+dearths;hardest
+someword;completelydifferentword
+sued;dues
+abcdefghijklmnopqrstuvwxyz;zyxwvutsrqponmlkjihgfedcba
+abcdefghijklmnopqrstuvwxyzz;zyxwvutsrqponmlkjihgfedcba
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee;eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
