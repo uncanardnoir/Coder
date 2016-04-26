@@ -1,0 +1,13 @@
+# Problem Description
+Given an array of up to 20000 integers (which can be zero or negative), return the sum of all integers which are negative. For instance, with the array $[100, -200, 0, -50, 200]$, the answer is $(-200) + (-50) = -250$.
+%%%
+# Input Parameter
+System.Int32[]
+# Max input size
+20000
+# Output Parameter
+System.Int32
+# Sample Input
+[100, -200, 0, -50, 200]
+# Sample Output
+-250

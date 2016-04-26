@@ -1,0 +1,13 @@
+# Problem Description
+Given an array of at most 100 integers $a_1, a_2, a_3, ... a_n$, write a method that returns the sum of every even indexed integer: $a_2 + a_4 + a_6 + ...$. For the sake of this problem, let the very first integer in the array be index 1.
+%%%
+# Input Parameter
+System.Int32[]
+# Max input size
+100
+# Output Parameter
+System.Int32
+# Sample Input
+[3, 4, 5, 6, 7, 8]
+# Sample Output
+18

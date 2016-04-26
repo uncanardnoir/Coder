@@ -1,0 +1,17 @@
+# Problem Description
+A <a href="https://en.wikipedia.org/wiki/Pangram">pangram</a> is a sentence that uses every letter of the alphabet at least once. (Such sentences are very useful to testing out different fonts). For instance, this is a pangram:
+
+The quick brown fox jumps over the lazy dog
+
+Given a sentence made up of uppercase and lowercase letters and spaces, return true if the sentence is a pangram and false otherwise.
+%%%
+# Input Parameter
+System.String
+# Max input size
+0
+# Output Parameter
+System.Boolean
+# Sample Input
+The quick brown fox jumps over the lazy dog
+# Sample Output
+true

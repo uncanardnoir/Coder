@@ -1,0 +1,13 @@
+# Problem Description
+Given an array of at most 100 integers, write a method that returns their sum.
+%%%
+# Input Parameter
+System.Int32[]
+# Max input size
+100
+# Output Parameter
+System.Int32
+# Sample Input
+[1, 2, 3, 4, 5, 10, 20]
+# Sample Output
+45

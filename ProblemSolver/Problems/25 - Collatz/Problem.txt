@@ -1,0 +1,15 @@
+# Problem Description
+The <a href="https://en.wikipedia.org/wiki/Collatz_conjecture">Collatz conjecture</a> is a famous open problem in mathematics that goes as follows:
+
+Start with any integer $n$. If $n$ is even, divide it by 2: $n = \frac{n}{2}$. If $n$ is odd, multiply it by 3 and add 1: $n = 3n + 1$. The conjecture states that if you do this enough times with any number, you will eventually get to 1. For instance, this is a Collatz chain starting from $n = 6$:$$6 \to 3 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1$$In this example, it takes 8 steps to reach 1. Write a function that takes an input $n$ and returns the number of steps needed to reach 1.
+%%%
+# Input Parameter
+System.Int32
+# Max input size
+0
+# Output Parameter
+System.Int32
+# Sample Input
+6
+# Sample Output
+8

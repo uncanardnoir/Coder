@@ -1,0 +1,18 @@
+# Problem Description
+(This is an extension of problems 3 and 6). Given an array of up to 200 integers $a_1, a_2, a_3, ... a_n$, return the sum of all integers which fulfill the following two criteria:
+
+1. The integer is an even number
+2. The integer is in an even-numbered index (where we consider the first number to be index 1).
+
+For instance, for the input $[2, 6, 5, 7, 10, 20]$ the answer is 26. The "5" and "7" do not count because they are not even. The "2" and "10" do not count because they are in an odd-numbered index (the "2" is at index 1 and the "10" is at index 5).
+%%%
+# Input Parameter
+System.Int32[]
+# Max input size
+200
+# Output Parameter
+System.Int32
+# Sample Input
+[2, 6, 5, 7, 10, 20]
+# Sample Output
+26

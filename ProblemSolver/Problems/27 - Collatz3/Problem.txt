@@ -1,0 +1,19 @@
+# Problem Description
+Consider again the Collatz conjecture from Problem 25: Start with any integer $n$. If $n$ is even, divide it by 2: $n = \frac{n}{2}$. If $n$ is odd, multiply it by 3 and add 1: $n = 3n + 1$. The conjecture states that if you do this enough times with any number, you will eventually get to 1. The number of times we have to repeat the process is called the <b>length of the Collatz chain</b> of $n$.
+
+Given an integer $k$, return the number of integers between 1 and 200 inclusive whose Collatz length equals to $k$. For instance, if we have $k = 8$, there are only 3 Collatz chains starting between 1 and 200 that have length 8:
+$6 \to 3 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1$
+$40 \to 20 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1$
+$42 \to 21 \to 64 \to 32 \to 16 \to 8 \to 4 \to 2 \to 1$
+So the answer in this case is 3.
+%%%
+# Input Parameter
+System.Int32
+# Max input size
+0
+# Output Parameter
+System.Int32
+# Sample Input
+8
+# Sample Output
+3

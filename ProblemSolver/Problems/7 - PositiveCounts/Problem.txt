@@ -1,0 +1,13 @@
+# Problem Description
+Given an array of up to 1000 integers, return boolean 'true' if the array has more positive numbers than negative numbers, and 'false' otherwise. For instance, $[1, 3, 5, -2, -4]$ returns true, but $[2, -2, 0, -4]$ returns false.
+%%%
+# Input Parameter
+System.Int32[]
+# Max input size
+1000
+# Output Parameter
+System.Boolean
+# Sample Input
+[2, -2, 0, -4]
+# Sample Output
+false
