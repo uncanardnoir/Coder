@@ -1,0 +1,20 @@
+# Problem Description
+Consider again our escaping rules from problem 32. An "escaped string" is one where:
+1. Every quotation mark (") is preceded by a backslash <b>\"</b>
+2. Every single quotation mark (') is preceded by a backslash: <b>\'</b>
+3. Every question mark (?) is preceded by a backslash: <b>\?</b>
+4. Every tab character (	) is represented as <b>\t</b>
+5. Every backslash (\) is represented as two backslashes <b>\\</b>
+
+Given an escaped string as an input, return the original unescaped string. You may assume the input is always a valid escaped string.
+%%%
+# Input Parameter
+System.String
+# Max input size
+0
+# Output Parameter
+System.String
+# Sample Input
+The original string might\'ve had some \"funny punctuation\",\tbut I thought he\\she cleaned it up\?
+# Sample Output
+The original string might've had some "funny punctuation",	but I thought he\she cleaned it up?

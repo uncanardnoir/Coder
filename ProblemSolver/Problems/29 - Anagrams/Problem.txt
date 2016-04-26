@@ -1,0 +1,15 @@
+# Problem Description
+Two words are <a href="https://en.wikipedia.org/wiki/Anagram">anagrams</a> if they contain the same exact letters in the same amounts, but arranged in any order. For instance "caters" and "reacts" are anagrams, but "server" and "reserve" are not because "reserve" has an extra "e".
+
+Given two words made up of lowercase letters and separated by a semicolon ";", return true if the two words are anagrams of each other and false otherwise.
+%%%
+# Input Parameter
+System.String
+# Max input size
+0
+# Output Parameter
+System.Boolean
+# Sample Input
+server;reverse
+# Sample Output
+false

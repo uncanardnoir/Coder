@@ -1,0 +1,13 @@
+# Problem Description
+When $a \ne 0$, the equation $ax^2 + bx + c = 0$ has two solutions, which are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$Given $a$, $b$ and $c$ as three integers separated by semicolons (;), return the larger solution as a double. You may assume that all solutions will be real.
+%%%
+# Input Parameter
+System.String
+# Max input size
+0
+# Output Parameter
+System.Double
+# Sample Input
+2;5;-3
+# Sample Output
+0.5

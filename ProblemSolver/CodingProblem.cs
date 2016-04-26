@@ -35,7 +35,7 @@ namespace ProblemSolver
             var compiler = new CSharpCodeProvider();
             string outparam = compiler.GetTypeOutput(new System.CodeDom.CodeTypeReference(outputParameter));
             string inparam = compiler.GetTypeOutput(new System.CodeDom.CodeTypeReference(inputParameter));
-            string defaultValue = string.Empty;
+            string defaultValue = " null";
             if (outparam.Equals("bool"))
             {
                 defaultValue = " false";

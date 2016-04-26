@@ -1,0 +1,13 @@
+# Problem Description
+Given a string, return another string which contains the same characters in reverse.
+%%%
+# Input Parameter
+System.String
+# Max input size
+0
+# Output Parameter
+System.String
+# Sample Input
+watermelon
+# Sample Output
+nolemretaw
