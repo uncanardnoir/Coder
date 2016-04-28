@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace ProblemSolver
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         string programRoot;
         string problemsRoot;
@@ -76,21 +76,21 @@ namespace ProblemSolver
 
                     viewSolutionToolStripMenuItem.Enabled = nextProblem.IsSolved;
                     currentProblem = nextProblem;
-                    webBrowser1.DocumentText = MathJax.GetFormattedHtml(currentProblem.ToMathJaxString());
+                    wbProblemDisplay.DocumentText = MathJax.GetFormattedHtml(currentProblem.ToMathJaxString());
                 }
 
                 if (File.Exists(Path.Combine(problemsRoot, name, "SavedAttempt.cs")))
                 {
                     using (StreamReader sr = new StreamReader(Path.Combine(problemsRoot, name, "SavedAttempt.cs")))
                     {
-                        textBox1.Text = sr.ReadToEnd();
+                        txtCodeEditor.Text = sr.ReadToEnd();
                     }
                 }
                 else
                 {
-                    textBox1.Text = currentProblem.GenerateMethodStub();
+                    txtCodeEditor.Text = currentProblem.GenerateMethodStub();
                 }
-                richTextBox1.Clear();
+                rtbOutputDisplay.Clear();
             }
             catch (Exception e)
             {
@@ -115,12 +115,12 @@ namespace ProblemSolver
             LoadProblem(tsmi.Name);
         }
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             programRoot = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
             if (programRoot.StartsWith("file:\\"))
@@ -128,7 +128,7 @@ namespace ProblemSolver
                 programRoot = programRoot.Substring(6);
             }
 
-            textBox1.SetHighlighting("C#");
+            txtCodeEditor.SetHighlighting("C#");
             problemsRoot = Path.Combine(programRoot, "Problems");
 
             if (!Directory.Exists(problemsRoot))
@@ -188,8 +188,8 @@ namespace ProblemSolver
             {
                 return null;
             }
-            richTextBox1.Clear();
-            richTextBox1.Text = "Compiling code ... ";
+            rtbOutputDisplay.Clear();
+            rtbOutputDisplay.Text = "Compiling code ... ";
             Stopwatch sw = new Stopwatch();
             sw.Start();
             var provider = CSharpCodeProvider.CreateProvider("c#");
@@ -202,22 +202,22 @@ namespace ProblemSolver
             {
                 foreach (var error in results.Errors)
                 {
-                    richTextBox1.AppendText("\n");
-                    richTextBox1.AppendText(error.ToString(), Color.Red, true);
+                    rtbOutputDisplay.AppendText("\n");
+                    rtbOutputDisplay.AppendText(error.ToString(), Color.Red, true);
                 }
-                richTextBox1.AppendText(string.Format("\n{0} errors encountered. Compile time {1} seconds.", results.Errors.Count, (double)sw.ElapsedMilliseconds / 1000), Color.Red, true);
+                rtbOutputDisplay.AppendText(string.Format("\n{0} errors encountered. Compile time {1} seconds.", results.Errors.Count, (double)sw.ElapsedMilliseconds / 1000), Color.Red, true);
                 return null;
             }
 
             sw.Stop();
-            richTextBox1.AppendText(string.Format("compilation done in {0} seconds.", (double)sw.ElapsedMilliseconds / 1000));
+            rtbOutputDisplay.AppendText(string.Format("compilation done in {0} seconds.", (double)sw.ElapsedMilliseconds / 1000));
 
             var t = results.CompiledAssembly.GetType("MySolution");
             var method = null != t ? t.GetMethod(currentProblem.ProblemName) : null;
             if (null == method)
             {
-                richTextBox1.AppendText("\n");
-                richTextBox1.AppendText(string.Format("Error: No method MySolution::{0} found! Your solution must be a public static method named {0} in a class named MySolution.", currentProblem.ProblemName), Color.Red, true);
+                rtbOutputDisplay.AppendText("\n");
+                rtbOutputDisplay.AppendText(string.Format("Error: No method MySolution::{0} found! Your solution must be a public static method named {0} in a class named MySolution.", currentProblem.ProblemName), Color.Red, true);
                 return null;
             }
 
@@ -227,8 +227,8 @@ namespace ProblemSolver
             if (parama.Count() != 1 || parama[0].ParameterType != currentProblem.inputParameter
                 || retval != currentProblem.outputParameter)
             {
-                richTextBox1.AppendText("\n");
-                richTextBox1.AppendText(string.Format("Error: MySolution::{0} has incorrect method signature! Method must accept one parameter of type {1} and return {2}.", currentProblem.ProblemName, currentProblem.inputParameter.ToString(), currentProblem.outputParameter.ToString()), Color.Red, true);
+                rtbOutputDisplay.AppendText("\n");
+                rtbOutputDisplay.AppendText(string.Format("Error: MySolution::{0} has incorrect method signature! Method must accept one parameter of type {1} and return {2}.", currentProblem.ProblemName, currentProblem.inputParameter.ToString(), currentProblem.outputParameter.ToString()), Color.Red, true);
                 return null;
             }
 
@@ -237,17 +237,17 @@ namespace ProblemSolver
 
         private void RunAgainstSample()
         {
-            textBox1.IsReadOnly = true;
-            MethodInfo method = CompileCode(textBox1.Text);
+            txtCodeEditor.IsReadOnly = true;
+            MethodInfo method = CompileCode(txtCodeEditor.Text);
             if (method == null)
             {
-                textBox1.IsReadOnly = false;
+                txtCodeEditor.IsReadOnly = false;
                 return;
             }
 
             try
             {
-                richTextBox1.AppendText(string.Format("\r\nTrying method MySolution::{0} with sample input {1}", currentProblem.ProblemName, currentProblem.SampleInputString));
+                rtbOutputDisplay.AppendText(string.Format("\r\nTrying method MySolution::{0} with sample input {1}", currentProblem.ProblemName, currentProblem.SampleInputString));
 
                 waitingForResults = true;
 
@@ -260,7 +260,7 @@ namespace ProblemSolver
                     }
                     catch (Exception e)
                     {
-                        richTextBox1.AppendText(string.Format("\r\nAn exception was thrown executing your method: {0}", e.InnerException.Message), Color.Red, true);
+                        rtbOutputDisplay.AppendText(string.Format("\r\nAn exception was thrown executing your method: {0}", e.InnerException.Message), Color.Red, true);
                         return null;
                     }
                 }, SampleCaseCallback, ProgramTimeout);
@@ -269,44 +269,44 @@ namespace ProblemSolver
             }
             catch (Exception ex)
             {
-                richTextBox1.AppendText(string.Format("\r\nAn error occurred executing your method: {0}", ex.Message), Color.Red, true);
+                rtbOutputDisplay.AppendText(string.Format("\r\nAn error occurred executing your method: {0}", ex.Message), Color.Red, true);
             }
-            textBox1.IsReadOnly = false;
+            txtCodeEditor.IsReadOnly = false;
         }
 
         public void ProgramTimeout(long elapsedMilliseconds)
         {
             if (globalTestCases == null)
             {
-                richTextBox1.AppendText(string.Format("\r\nYour method timed out after {0} seconds", (double)elapsedMilliseconds / 1000), Color.Red, true);
+                rtbOutputDisplay.AppendText(string.Format("\r\nYour method timed out after {0} seconds", (double)elapsedMilliseconds / 1000), Color.Red, true);
             }
             else
             {
-                richTextBox1.AppendText(string.Format("\r\nYour method timed out after {0} seconds on the following test case:\r\n", (double)elapsedMilliseconds / 1000), Color.Red, true);
-                richTextBox1.AppendText(globalTestCases[lastRunTest].ExpectedOutput.ToString(), Color.Red, true);
+                rtbOutputDisplay.AppendText(string.Format("\r\nYour method timed out after {0} seconds on the following test case:\r\n", (double)elapsedMilliseconds / 1000), Color.Red, true);
+                rtbOutputDisplay.AppendText(globalTestCases[lastRunTest].ExpectedOutput.ToString(), Color.Red, true);
             }
             waitingForResults = false;
-            textBox1.IsReadOnly = false;
+            txtCodeEditor.IsReadOnly = false;
         }
 
         public void SampleCaseCallback(long elapsedMilliseconds, object result)
         {
-            richTextBox1.AppendText(string.Format("\r\n\r\nThe expected output was: {0}", currentProblem.SampleOutputString), Color.Black, true);
-            richTextBox1.AppendText(string.Format("\r\nThe output from your method was: {0}", result == null ? "(null)" : result.ToString()), Color.Black, true);
+            rtbOutputDisplay.AppendText(string.Format("\r\n\r\nThe expected output was: {0}", currentProblem.SampleOutputString), Color.Black, true);
+            rtbOutputDisplay.AppendText(string.Format("\r\nThe output from your method was: {0}", result == null ? "(null)" : result.ToString()), Color.Black, true);
             if ((currentProblem.outputParameter == typeof(double) && ((double)result).ApproximatelyEqual((double)currentProblem.SampleOutput)) ||
                 currentProblem.SampleOutput.Equals(result))
             {
-                richTextBox1.AppendText(string.Format("\r\nCongratulations, your method passed the sample case! [{0} seconds]", (double)elapsedMilliseconds / 1000), Color.DarkGreen, true);
+                rtbOutputDisplay.AppendText(string.Format("\r\nCongratulations, your method passed the sample case! [{0} seconds]", (double)elapsedMilliseconds / 1000), Color.DarkGreen, true);
             }
             else
             {
-                richTextBox1.AppendText(string.Format("\r\nSorry, your method did not pass the sample case. [{0} seconds]", (double)elapsedMilliseconds / 1000), Color.Red, true);
+                rtbOutputDisplay.AppendText(string.Format("\r\nSorry, your method did not pass the sample case. [{0} seconds]", (double)elapsedMilliseconds / 1000), Color.Red, true);
             }
             waitingForResults = false;
-            textBox1.IsReadOnly = false;
+            txtCodeEditor.IsReadOnly = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnRunOnSample_Click(object sender, EventArgs e)
         {
             if (waitingForResults)
             {
@@ -320,7 +320,7 @@ namespace ProblemSolver
             MessageBox.Show("Created by uncanardnoir (Github) / 4A18B156 (Reddit).\r\n\r\nThis program and all accompanying test files are made freely available with no warranty under the MIT License (https://opensource.org/licenses/MIT)");
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnClearSolution_Click(object sender, EventArgs e)
         {
             if (waitingForResults)
             {
@@ -331,13 +331,13 @@ namespace ProblemSolver
             {
                 if (currentProblem != null)
                 {
-                    textBox1.Text = currentProblem.GenerateMethodStub();
+                    txtCodeEditor.Text = currentProblem.GenerateMethodStub();
                 }
                 else
                 {
-                    textBox1.Text = string.Empty;
+                    txtCodeEditor.Text = string.Empty;
                 }
-                richTextBox1.Clear();
+                rtbOutputDisplay.Clear();
             }
 
         }
@@ -348,13 +348,13 @@ namespace ProblemSolver
             {
                 using (StreamWriter sw = new StreamWriter(Path.Combine(problemsRoot, currentProblem.DirectoryPath, "SavedAttempt.cs")))
                 {
-                    sw.Write(textBox1.Text);
+                    sw.Write(txtCodeEditor.Text);
                 }
-                richTextBox1.AppendText(string.Format("\r\nFile saved at {0}.", DateTime.Now));
+                rtbOutputDisplay.AppendText(string.Format("\r\nFile saved at {0}.", DateTime.Now));
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             TrySave();
         }
@@ -371,7 +371,7 @@ namespace ProblemSolver
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnSubmit_Click(object sender, EventArgs e)
         {
             if (waitingForResults)
             {
@@ -379,12 +379,12 @@ namespace ProblemSolver
             }
 
             waitingForResults = true;
-            textBox1.IsReadOnly = true;
+            txtCodeEditor.IsReadOnly = true;
 
-            MethodInfo method = CompileCode(textBox1.Text);
+            MethodInfo method = CompileCode(txtCodeEditor.Text);
             if (method == null)
             {
-                textBox1.IsReadOnly = false;
+                txtCodeEditor.IsReadOnly = false;
                 waitingForResults = false;
                 return;
             }
@@ -402,13 +402,13 @@ namespace ProblemSolver
                 if (solutionMethod == null)
                 {
                     Debug.Assert(false);
-                    richTextBox1.AppendText("Error: couldn't find solution code", Color.Red, true);
+                    rtbOutputDisplay.AppendText("Error: couldn't find solution code", Color.Red, true);
                     waitingForResults = false;
-                    textBox1.IsReadOnly = false;
+                    txtCodeEditor.IsReadOnly = false;
                     return;
                 }
 
-                richTextBox1.AppendText("\r\nGenerating test cases, please wait... ");
+                rtbOutputDisplay.AppendText("\r\nGenerating test cases, please wait... ");
 
                 List<TestCase> testCases;
                 string testCasesFile = Path.Combine(problemsRoot, currentProblem.DirectoryPath, "TestCases.txt");
@@ -427,13 +427,13 @@ namespace ProblemSolver
                 else
                 {
                     Debug.Assert(false);
-                    richTextBox1.AppendText(string.Format("Error with test case: don't know how to generate test cases for type {0}", currentProblem.inputParameter.Name), Color.Red, true);
+                    rtbOutputDisplay.AppendText(string.Format("Error with test case: don't know how to generate test cases for type {0}", currentProblem.inputParameter.Name), Color.Red, true);
                     waitingForResults = false;
-                    textBox1.IsReadOnly = false;
+                    txtCodeEditor.IsReadOnly = false;
                     return;
                 }
                 sw.Stop();
-                richTextBox1.AppendText(string.Format(" generated in {0} seconds.\r\n", (double)sw.ElapsedMilliseconds / 1000));
+                rtbOutputDisplay.AppendText(string.Format(" generated in {0} seconds.\r\n", (double)sw.ElapsedMilliseconds / 1000));
 
                 currentTestingMethod = method;
                 globalTestCases = testCases;
@@ -448,17 +448,17 @@ namespace ProblemSolver
                     }
                     catch (Exception ex)
                     {
-                        richTextBox1.AppendText(string.Format("\r\nAn exception was thrown executing your method: {0}", ex.InnerException.Message), Color.Red, true);
+                        rtbOutputDisplay.AppendText(string.Format("\r\nAn exception was thrown executing your method: {0}", ex.InnerException.Message), Color.Red, true);
                         return null;
                     }
                 }, TestInProgressCallback, ProgramTimeout);
             }
             catch (Exception ex)
             {
-                richTextBox1.AppendText(string.Format("\r\nAn error occurred executing your program: {0}", ex.Message), Color.Red, true);
+                rtbOutputDisplay.AppendText(string.Format("\r\nAn error occurred executing your program: {0}", ex.Message), Color.Red, true);
                 globalTestCases = null;
                 waitingForResults = false;
-                textBox1.IsReadOnly = false;
+                txtCodeEditor.IsReadOnly = false;
             }
         }
 
@@ -466,20 +466,20 @@ namespace ProblemSolver
         {
             TestCase tc = globalTestCases[lastRunTest];
 
-            richTextBox1.InvokeAppendText(string.Format("\r\nTest case {0}: ", lastRunTest));
+            rtbOutputDisplay.InvokeAppendText(string.Format("\r\nTest case {0}: ", lastRunTest));
             if ((currentProblem.outputParameter == typeof(double) && ((double)result).ApproximatelyEqual((double)tc.ExpectedOutput)) ||
                 tc.ExpectedOutput.Equals(result))
             {
-                richTextBox1.AppendText(string.Format("PASS [{0} seconds]", (double)elapsedMilliseconds / 1000), Color.DarkGreen, true);
+                rtbOutputDisplay.AppendText(string.Format("PASS [{0} seconds]", (double)elapsedMilliseconds / 1000), Color.DarkGreen, true);
             }
             else
             {
-                richTextBox1.AppendText(string.Format("\r\nThe input was: {0}", tc.input.GetType() == typeof(Int32[]) ? string.Join(",", (Int32[])tc.input) : tc.input.ToString()), Color.Black, true);
-                richTextBox1.AppendText(string.Format("\r\nThe expected output was: {0}", tc.ExpectedOutput.ToString()), Color.Black, true);
-                richTextBox1.AppendText(string.Format("\r\nThe output from your method was: {0}", result.ToString()), Color.Black, true);
-                richTextBox1.AppendText(string.Format("\r\nSorry, your method did not pass this test case. [{0} seconds]", (double)elapsedMilliseconds / 1000), Color.Red, true);
+                rtbOutputDisplay.AppendText(string.Format("\r\nThe input was: {0}", tc.input.GetType() == typeof(Int32[]) ? string.Join(",", (Int32[])tc.input) : tc.input.ToString()), Color.Black, true);
+                rtbOutputDisplay.AppendText(string.Format("\r\nThe expected output was: {0}", tc.ExpectedOutput.ToString()), Color.Black, true);
+                rtbOutputDisplay.AppendText(string.Format("\r\nThe output from your method was: {0}", result.ToString()), Color.Black, true);
+                rtbOutputDisplay.AppendText(string.Format("\r\nSorry, your method did not pass this test case. [{0} seconds]", (double)elapsedMilliseconds / 1000), Color.Red, true);
                 waitingForResults = false;
-                textBox1.IsReadOnly = false;
+                txtCodeEditor.IsReadOnly = false;
                 globalTestCases = null;
                 return;
             }
@@ -497,7 +497,7 @@ namespace ProblemSolver
             }
 
             // Passing!
-            richTextBox1.AppendText("\r\n\r\nCongratulations, your method passed all test cases!", Color.DarkGreen, true);
+            rtbOutputDisplay.AppendText("\r\n\r\nCongratulations, your method passed all test cases!", Color.DarkGreen, true);
             tada.Play();
             if (!currentProblem.IsSolved)
             {
@@ -519,7 +519,7 @@ namespace ProblemSolver
             }
             globalTestCases = null;
             waitingForResults = false;
-            textBox1.IsReadOnly = false;
+            txtCodeEditor.IsReadOnly = false;
         }
 
         private void progressToolStripMenuItem1_Click(object sender, EventArgs e)

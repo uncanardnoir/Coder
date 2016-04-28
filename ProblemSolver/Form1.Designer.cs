@@ -1,6 +1,6 @@
 ﻿namespace ProblemSolver
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.msMenu = new System.Windows.Forms.MenuStrip();
             this.problemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewSolutionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,14 +37,14 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new ICSharpCode.TextEditor.TextEditorControl();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.menuStrip1.SuspendLayout();
+            this.wbProblemDisplay = new System.Windows.Forms.WebBrowser();
+            this.btnSubmit = new System.Windows.Forms.Button();
+            this.btnClearSolution = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnRunOnSample = new System.Windows.Forms.Button();
+            this.txtCodeEditor = new ICSharpCode.TextEditor.TextEditorControl();
+            this.rtbOutputDisplay = new System.Windows.Forms.RichTextBox();
+            this.msMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -55,17 +55,17 @@
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // msMenu
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.problemsToolStripMenuItem,
             this.progressToolStripMenuItem,
             this.aboutToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(999, 24);
-            this.menuStrip1.TabIndex = 5;
-            this.menuStrip1.Text = "menuStrip1";
+            this.msMenu.Location = new System.Drawing.Point(0, 0);
+            this.msMenu.Name = "msMenu";
+            this.msMenu.Size = new System.Drawing.Size(999, 24);
+            this.msMenu.TabIndex = 5;
+            this.msMenu.Text = "menuStrip1";
             // 
             // problemsToolStripMenuItem
             // 
@@ -119,7 +119,7 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.richTextBox1);
+            this.splitContainer2.Panel2.Controls.Add(this.rtbOutputDisplay);
             this.splitContainer2.Size = new System.Drawing.Size(974, 687);
             this.splitContainer2.SplitterDistance = 434;
             this.splitContainer2.TabIndex = 10;
@@ -133,111 +133,111 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.webBrowser1);
+            this.splitContainer1.Panel1.Controls.Add(this.wbProblemDisplay);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.button2);
-            this.splitContainer1.Panel2.Controls.Add(this.button4);
-            this.splitContainer1.Panel2.Controls.Add(this.button3);
-            this.splitContainer1.Panel2.Controls.Add(this.button1);
-            this.splitContainer1.Panel2.Controls.Add(this.textBox1);
+            this.splitContainer1.Panel2.Controls.Add(this.btnSubmit);
+            this.splitContainer1.Panel2.Controls.Add(this.btnClearSolution);
+            this.splitContainer1.Panel2.Controls.Add(this.btnSave);
+            this.splitContainer1.Panel2.Controls.Add(this.btnRunOnSample);
+            this.splitContainer1.Panel2.Controls.Add(this.txtCodeEditor);
             this.splitContainer1.Size = new System.Drawing.Size(974, 434);
             this.splitContainer1.SplitterDistance = 214;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 10;
             // 
-            // webBrowser1
+            // wbProblemDisplay
             // 
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(974, 214);
-            this.webBrowser1.TabIndex = 0;
-            this.webBrowser1.WebBrowserShortcutsEnabled = false;
+            this.wbProblemDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wbProblemDisplay.Location = new System.Drawing.Point(0, 0);
+            this.wbProblemDisplay.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wbProblemDisplay.Name = "wbProblemDisplay";
+            this.wbProblemDisplay.Size = new System.Drawing.Size(974, 214);
+            this.wbProblemDisplay.TabIndex = 0;
+            this.wbProblemDisplay.WebBrowserShortcutsEnabled = false;
             // 
-            // button2
+            // btnSubmit
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(807, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(168, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "S&ubmit";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSubmit.Location = new System.Drawing.Point(807, 0);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(168, 23);
+            this.btnSubmit.TabIndex = 9;
+            this.btnSubmit.Text = "S&ubmit";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // button4
+            // btnClearSolution
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(633, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(168, 23);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Clear Solution";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnClearSolution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClearSolution.Location = new System.Drawing.Point(633, 0);
+            this.btnClearSolution.Name = "btnClearSolution";
+            this.btnClearSolution.Size = new System.Drawing.Size(168, 23);
+            this.btnClearSolution.TabIndex = 8;
+            this.btnClearSolution.Text = "Clear Solution";
+            this.btnClearSolution.UseVisualStyleBackColor = true;
+            this.btnClearSolution.Click += new System.EventHandler(this.btnClearSolution_Click);
             // 
-            // button3
+            // btnSave
             // 
-            this.button3.Location = new System.Drawing.Point(173, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(168, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Save (CTRL+S)";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnSave.Location = new System.Drawing.Point(173, 0);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(168, 23);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "Save (CTRL+S)";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // button1
+            // btnRunOnSample
             // 
-            this.button1.Location = new System.Drawing.Point(-1, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(168, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "&Run against sample case (F5)";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnRunOnSample.Location = new System.Drawing.Point(-1, 0);
+            this.btnRunOnSample.Name = "btnRunOnSample";
+            this.btnRunOnSample.Size = new System.Drawing.Size(168, 23);
+            this.btnRunOnSample.TabIndex = 2;
+            this.btnRunOnSample.Text = "&Run against sample case (F5)";
+            this.btnRunOnSample.UseVisualStyleBackColor = true;
+            this.btnRunOnSample.Click += new System.EventHandler(this.btnRunOnSample_Click);
             // 
-            // textBox1
+            // txtCodeEditor
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtCodeEditor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.IsReadOnly = false;
-            this.textBox1.Location = new System.Drawing.Point(0, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ShowSpaces = true;
-            this.textBox1.ShowTabs = true;
-            this.textBox1.Size = new System.Drawing.Size(975, 182);
-            this.textBox1.TabIndex = 1;
+            this.txtCodeEditor.IsReadOnly = false;
+            this.txtCodeEditor.Location = new System.Drawing.Point(0, 29);
+            this.txtCodeEditor.Name = "txtCodeEditor";
+            this.txtCodeEditor.ShowSpaces = true;
+            this.txtCodeEditor.ShowTabs = true;
+            this.txtCodeEditor.Size = new System.Drawing.Size(975, 170);
+            this.txtCodeEditor.TabIndex = 1;
             // 
-            // richTextBox1
+            // rtbOutputDisplay
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(974, 249);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "";
+            this.rtbOutputDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbOutputDisplay.Location = new System.Drawing.Point(0, 0);
+            this.rtbOutputDisplay.Name = "rtbOutputDisplay";
+            this.rtbOutputDisplay.ReadOnly = true;
+            this.rtbOutputDisplay.Size = new System.Drawing.Size(974, 249);
+            this.rtbOutputDisplay.TabIndex = 3;
+            this.rtbOutputDisplay.Text = "";
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(999, 726);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.msMenu);
             this.Controls.Add(this.splitContainer2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.MainMenuStrip = this.msMenu;
+            this.Name = "MainForm";
             this.Text = "Coder";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.msMenu.ResumeLayout(false);
+            this.msMenu.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -253,7 +253,7 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip msMenu;
         private System.Windows.Forms.ToolStripMenuItem problemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem progressToolStripMenuItem;
@@ -261,13 +261,13 @@
         private System.Windows.Forms.ToolStripMenuItem progressToolStripMenuItem1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
-        private ICSharpCode.TextEditor.TextEditorControl textBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.WebBrowser wbProblemDisplay;
+        private System.Windows.Forms.Button btnSubmit;
+        private System.Windows.Forms.Button btnClearSolution;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnRunOnSample;
+        private ICSharpCode.TextEditor.TextEditorControl txtCodeEditor;
+        private System.Windows.Forms.RichTextBox rtbOutputDisplay;
     }
 }
 
