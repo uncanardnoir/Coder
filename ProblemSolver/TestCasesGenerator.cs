@@ -31,20 +31,7 @@ namespace ProblemSolver
                 string s;
                 while ((s = sr.ReadLine()) != null)
                 {
-                    object nextInput;
-                    if (inputType == typeof(string))
-                    {
-                        nextInput = s;
-                    }
-                    else if (inputType == typeof(Int32))
-                    {
-                        nextInput = Int32.Parse(s);
-                    }
-                    else
-                    {
-                        Debug.Assert(false);
-                        return null;
-                    }
+                    object nextInput = UnmarshalObject(inputType, s);
                     object nextOutput = solutionMethod.Invoke(null, new object[] { nextInput });
                     testCases.Add(new TestCase(nextInput, nextOutput));
                 }

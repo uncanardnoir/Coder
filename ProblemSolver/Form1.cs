@@ -254,14 +254,22 @@ namespace ProblemSolver
                 ThreadingHelper threadHelper = new ThreadingHelper();
                 threadHelper.RunMethodAsync(delegate
                 {
-                    return method.Invoke(null, new object[] { currentProblem.SampleInput });
+                    try
+                    {
+                        return method.Invoke(null, new object[] { currentProblem.SampleInput });
+                    }
+                    catch (Exception e)
+                    {
+                        richTextBox1.AppendText(string.Format("\r\nAn exception was thrown executing your method: {0}", e.InnerException.Message), Color.Red, true);
+                        return null;
+                    }
                 }, SampleCaseCallback, ProgramTimeout);
 
                 return;
             }
             catch (Exception ex)
             {
-                richTextBox1.AppendText(string.Format("\r\nAn error occurred executing your program: {0}", ex.Message), Color.Red, true);
+                richTextBox1.AppendText(string.Format("\r\nAn error occurred executing your method: {0}", ex.Message), Color.Red, true);
             }
             textBox1.IsReadOnly = false;
         }
@@ -434,7 +442,15 @@ namespace ProblemSolver
                 ThreadingHelper th = new ThreadingHelper();
                 th.RunMethodAsync(delegate
                 {
-                    return currentTestingMethod.Invoke(null, new object[] { globalTestCases[lastRunTest].input });
+                    try
+                    {
+                        return currentTestingMethod.Invoke(null, new object[] { globalTestCases[lastRunTest].input });
+                    }
+                    catch (Exception ex)
+                    {
+                        richTextBox1.AppendText(string.Format("\r\nAn exception was thrown executing your method: {0}", ex.InnerException.Message), Color.Red, true);
+                        return null;
+                    }
                 }, TestInProgressCallback, ProgramTimeout);
             }
             catch (Exception ex)
@@ -515,15 +531,6 @@ namespace ProblemSolver
         {
             Debug.Assert(currentProblem.IsSolved);
             Process.Start("notepad.exe", Path.Combine(problemsRoot, currentProblem.DirectoryPath, "Solution.cs"));
-        }
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-        }
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-
         }
     }
 }

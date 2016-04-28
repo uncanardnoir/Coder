@@ -1,0 +1,13 @@
+# Problem Description
+Given an array of integers, return true if every integer in the array is even, and false otherwise.
+%%%
+# Input Parameter
+System.Int32[]
+# Max input size
+0
+# Output Parameter
+System.Boolean
+# Sample Input
+[2, 4, 6, 7]
+# Sample Output
+false
