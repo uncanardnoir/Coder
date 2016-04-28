@@ -1,0 +1,15 @@
+# Problem Description
+In this case a palindrome is a string that is spelled the same forwards and backwards. For instance "aaa" and "agghgga" are palindromes. 
+Given a string in all lowercase with no spaces, return the count of how many palindromes the string contains.
+The palindrome does not have to be an english word, and the palindrome must be 2 or more characters.
+%%%
+# Input Parameter
+System.String
+# Max input size
+0
+# Output Parameter
+System.Int32
+# Sample Input
+abcdeffedcba
+# Sample Output
+6
