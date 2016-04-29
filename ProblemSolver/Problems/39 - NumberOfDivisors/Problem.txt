@@ -1,0 +1,15 @@
+# Problem Description
+Consider the number 6. It has 4 divisors: 1, 2, 3 and 6. We say that the <b>Euler totient function</b> of $n$ which is denoted as $\phi(n)$ (the greek letter Phi) is equal to the number of divisors of $n$. So $\phi(6)$ equals 4.
+
+Given a positive integer $n$ between 1 and 100, calculate $\phi(n)$
+%%%
+# Input Parameter
+System.Int32
+# Max input size
+0
+# Output Parameter
+System.Int32
+# Sample Input
+12
+# Sample Output
+6

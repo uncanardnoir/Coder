@@ -1,0 +1,15 @@
+# Problem Description
+Consider the number 6. It has 4 divisors: 1, 2, 3 and 6. We say that $\sigma(n)$ (the greek letter sigma) is equal to the sum of divisors of $n$. So $\sigma(6)$ equals $1 + 2 + 3 + 6 = 12$.
+
+Given a positive integer $n$ between 1 and 100, calculate $\sigma(n)$
+%%%
+# Input Parameter
+System.Int32
+# Max input size
+0
+# Output Parameter
+System.Int32
+# Sample Input
+12
+# Sample Output
+28
