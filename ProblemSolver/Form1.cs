@@ -258,9 +258,22 @@ namespace ProblemSolver
                     {
                         return method.Invoke(null, new object[] { currentProblem.SampleInput });
                     }
+                    catch (ThreadAbortException)
+                    {
+                        // Thread timeout
+                        throw;
+                    }
                     catch (Exception e)
                     {
-                        rtbOutputDisplay.AppendText(string.Format("\r\nAn exception was thrown executing your method: {0}", e.InnerException.Message), Color.Red, true);
+                        if (e.InnerException != null)
+                        {
+                            rtbOutputDisplay.AppendText(string.Format("\r\nAn exception was thrown executing your method: {0}", e.InnerException.Message), Color.Red, true);
+                        }
+                        else
+                        {
+                            rtbOutputDisplay.AppendText(string.Format("\r\nAn exception was thrown executing your method: {0}", e.Message), Color.Red, true);
+                        }
+
                         return null;
                     }
                 }, SampleCaseCallback, ProgramTimeout);
@@ -446,9 +459,21 @@ namespace ProblemSolver
                     {
                         return currentTestingMethod.Invoke(null, new object[] { globalTestCases[lastRunTest].input });
                     }
+                    catch (ThreadAbortException ex)
+                    {
+                        // Thread timeout
+                        throw;
+                    }
                     catch (Exception ex)
                     {
-                        rtbOutputDisplay.AppendText(string.Format("\r\nAn exception was thrown executing your method: {0}", ex.InnerException.Message), Color.Red, true);
+                        if (ex.InnerException != null)
+                        {
+                            rtbOutputDisplay.AppendText(string.Format("\r\nAn exception was thrown executing your method: {0}", ex.InnerException.Message), Color.Red, true);
+                        }
+                        else
+                        {
+                            rtbOutputDisplay.AppendText(string.Format("\r\nAn exception was thrown executing your method: {0}", ex.Message), Color.Red, true);
+                        }
                         return null;
                     }
                 }, TestInProgressCallback, ProgramTimeout);
