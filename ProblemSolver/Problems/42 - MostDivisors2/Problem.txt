@@ -1,0 +1,22 @@
+# Problem Description
+Recall the <b>totient function</b> from Problem 39: $\phi(n)$ equals the number of divisors of $n$. For instance, $\phi(6) = 4$.
+Given a positive integer $k$ between 1 and 1000, return the number $n$ such that the value of $\phi(n)$ is maximized, where $1 \le k \le n$. If there are multiple such $n$, return the smallest $n$. For instance, if $k = 7$,
+$\phi(1) = 1$
+$\phi(2) = 2$
+$\phi(3) = 2$
+$\phi(4) = 3$
+$\phi(5) = 2$
+$\phi(6) = 4$
+$\phi(7) = 2$
+The largest value of $\phi(n)$ is 4, when $n = 6$. So the answer is 6.
+%%%
+# Input Parameter
+System.Int32
+# Max input size
+0
+# Output Parameter
+System.Int32
+# Sample Input
+7
+# Sample Output
+6

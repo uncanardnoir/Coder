@@ -1,5 +1,5 @@
 # Problem Description
-Given an array of up to 100 integers $a_1, a_2, a_3, a_4, a_5, ...$, calculate the following: $a_1 - a_2 + a_3 - a_4 + a_5 - ...$ (alternating between adding and subtracting.
+Given an array of up to 100 integers $a_1, a_2, a_3, a_4, a_5, ...$, calculate the following: $a_1 - a_2 + a_3 - a_4 + a_5 - ...$ (alternating between adding and subtracting).
 %%%
 # Input Parameter
 System.Int32[]
