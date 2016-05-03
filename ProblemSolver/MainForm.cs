@@ -42,43 +42,9 @@ namespace ProblemSolver
 
             try
             {
-                string[] namesplt = name.Split('-');
                 using (StreamReader sr = new StreamReader(problemBody))
                 {
-                    CodingProblem nextProblem = new CodingProblem();
-                    nextProblem.DirectoryPath = name;
-                    nextProblem.ProblemId = int.Parse(namesplt[0].Trim());
-                    nextProblem.ProblemName = namesplt[1].Trim();
-                    {
-                        StringBuilder sb = new StringBuilder();
-                        do
-                        {
-                            string s = sr.ReadNoncommentLine();
-                            if (!s.Equals("%%%"))
-                            {
-                                sb.AppendLine(s);
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        } while (true);
-                        nextProblem.ProblemDescription = sb.ToString();
-                    }
-                    nextProblem.inputParameter = Type.GetType(sr.ReadNoncommentLine());
-                    nextProblem.maxInputSize = int.Parse(sr.ReadNoncommentLine());
-                    nextProblem.outputParameter = Type.GetType(sr.ReadNoncommentLine());
-                    nextProblem.SampleInputString = sr.ReadNoncommentLine();
-                    nextProblem.SampleOutputString = sr.ReadNoncommentLine();
-
-                    string isExample;
-                    if ((isExample = sr.ReadNoncommentLine()) != null)
-                    {
-                        nextProblem.IsExample = bool.Parse(isExample);
-                    }
-
-                    nextProblem.SampleInput = TestCasesGenerator.UnmarshalObject(nextProblem.inputParameter, nextProblem.SampleInputString);
-                    nextProblem.SampleOutput = TestCasesGenerator.UnmarshalObject(nextProblem.outputParameter, nextProblem.SampleOutputString);
+                    CodingProblem nextProblem = new CodingProblem(name, sr);
                     nextProblem.IsSolved = SolvedProblems.Contains(nextProblem.ProblemId);
 
                     viewSolutionToolStripMenuItem.Enabled = nextProblem.IsSolved;
@@ -231,11 +197,11 @@ namespace ProblemSolver
             var parama = method.GetParameters();
             var retval = method.ReturnType;
 
-            if (parama.Count() != 1 || parama[0].ParameterType != currentProblem.inputParameter
-                || retval != currentProblem.outputParameter)
+            if (parama.Count() != 1 || parama[0].ParameterType != currentProblem.InputParameter
+                || retval != currentProblem.OutputParameter)
             {
                 rtbOutputDisplay.AppendText("\n");
-                rtbOutputDisplay.AppendText(string.Format("Error: MySolution::{0} has incorrect method signature! Method must accept one parameter of type {1} and return {2}.", currentProblem.ProblemName, currentProblem.inputParameter.ToString(), currentProblem.outputParameter.ToString()), Color.Red, true);
+                rtbOutputDisplay.AppendText(string.Format("Error: MySolution::{0} has incorrect method signature! Method must accept one parameter of type {1} and return {2}.", currentProblem.ProblemName, currentProblem.InputParameter.ToString(), currentProblem.OutputParameter.ToString()), Color.Red, true);
                 return null;
             }
 
@@ -313,7 +279,7 @@ namespace ProblemSolver
         {
             rtbOutputDisplay.AppendText(string.Format("\r\n\r\nThe expected output was: {0}", currentProblem.SampleOutputString), Color.Black, true);
             rtbOutputDisplay.AppendText(string.Format("\r\nThe output from your method was: {0}", result == null ? "(null)" : result.ToString()), Color.Black, true);
-            if ((currentProblem.outputParameter == typeof(double) && ((double)result).ApproximatelyEqual((double)currentProblem.SampleOutput)) ||
+            if ((currentProblem.OutputParameter == typeof(double) && ((double)result).ApproximatelyEqual((double)currentProblem.SampleOutput)) ||
                 currentProblem.SampleOutput.Equals(result))
             {
                 rtbOutputDisplay.AppendText(string.Format("\r\nCongratulations, your method passed the sample case! [{0} seconds]", (double)elapsedMilliseconds / 1000), Color.DarkGreen, true);
@@ -342,7 +308,7 @@ namespace ProblemSolver
 
         private void btnClearSolution_Click(object sender, EventArgs e)
         {
-            if (waitingForResults)
+            if (waitingForResults || null == currentProblem)
             {
                 return;
             }
@@ -379,7 +345,7 @@ namespace ProblemSolver
             TrySave();
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F5)
             {
@@ -434,24 +400,24 @@ namespace ProblemSolver
                 string testCasesFile = Path.Combine(problemsRoot, currentProblem.DirectoryPath, "TestCases.txt");
                 if (File.Exists(testCasesFile))
                 {
-                    testCases = TestCasesGenerator.GetTestCasesFromFile(solutionMethod, testCasesFile, currentProblem.inputParameter);
+                    testCases = TestCasesGenerator.GetTestCasesFromFile(solutionMethod, testCasesFile, currentProblem.InputParameter);
                 }
-                else if (currentProblem.inputParameter == typeof(Int32[]))
+                else if (currentProblem.InputParameter == typeof(Int32[]))
                 {
-                    testCases = TestCasesGenerator.GenerateIntArray(solutionMethod, currentProblem.maxInputSize, true, true);
+                    testCases = TestCasesGenerator.GenerateIntArray(solutionMethod, currentProblem.MaxInputSize, true, true);
                 }
-                else if (currentProblem.inputParameter == typeof(Int32))
+                else if (currentProblem.InputParameter == typeof(Int32))
                 {
-                    testCases = TestCasesGenerator.GenerateInts(solutionMethod, currentProblem.maxInputSize);
+                    testCases = TestCasesGenerator.GenerateInts(solutionMethod, currentProblem.MaxInputSize);
                 }
-                else if (currentProblem.inputParameter == typeof(char))
+                else if (currentProblem.InputParameter == typeof(char))
                 {
                     testCases = TestCasesGenerator.GenerateChars(solutionMethod);
                 }
                 else
                 {
                     Debug.Assert(false);
-                    rtbOutputDisplay.AppendText(string.Format("Error with test case: don't know how to generate test cases for type {0}", currentProblem.inputParameter.Name), Color.Red, true);
+                    rtbOutputDisplay.AppendText(string.Format("Error with test case: don't know how to generate test cases for type {0}", currentProblem.InputParameter.Name), Color.Red, true);
                     waitingForResults = false;
                     txtCodeEditor.IsReadOnly = false;
                     return;
@@ -470,7 +436,7 @@ namespace ProblemSolver
                     {
                         return currentTestingMethod.Invoke(null, new object[] { globalTestCases[lastRunTest].input });
                     }
-                    catch (ThreadAbortException ex)
+                    catch (ThreadAbortException)
                     {
                         // Thread timeout
                         throw;
@@ -503,7 +469,7 @@ namespace ProblemSolver
             TestCase tc = globalTestCases[lastRunTest];
 
             rtbOutputDisplay.InvokeAppendText(string.Format("\r\nTest case {0}: ", lastRunTest));
-            if ((currentProblem.outputParameter == typeof(double) && ((double)result).ApproximatelyEqual((double)tc.ExpectedOutput)) ||
+            if ((currentProblem.OutputParameter == typeof(double) && ((double)result).ApproximatelyEqual((double)tc.ExpectedOutput)) ||
                 tc.ExpectedOutput.Equals(result))
             {
                 rtbOutputDisplay.AppendText(string.Format("PASS [{0} seconds]", (double)elapsedMilliseconds / 1000), Color.DarkGreen, true);

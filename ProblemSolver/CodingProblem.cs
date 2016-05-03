@@ -9,19 +9,57 @@ using System.Threading.Tasks;
 namespace ProblemSolver
 {
     class CodingProblem {
-        public string DirectoryPath;
-        public int ProblemId;
-        public string ProblemName;
-        public string ProblemDescription;
-        public Type inputParameter;
-        public int maxInputSize;
-        public Type outputParameter;
-        public string SampleInputString;
-        public string SampleOutputString;
-        public object SampleInput;
-        public object SampleOutput;
-        public bool IsSolved;
-        public bool IsExample;
+        public string DirectoryPath { get; private set; }
+        public int ProblemId { get; private set; }
+        public string ProblemName { get; private set; }
+        public string ProblemDescription { get; private set; }
+        public Type InputParameter { get; private set; }
+        public int MaxInputSize { get; private set; }
+        public Type OutputParameter { get; private set; }
+        public string SampleInputString { get; private set; }
+        public string SampleOutputString { get; private set; }
+        public object SampleInput { get; private set; }
+        public object SampleOutput { get; private set; }
+        public bool IsSolved { get; set; }
+        public bool IsExample { get; private set; }
+
+        public CodingProblem(string name, StreamReader sr)
+        {
+            string[] nameSplit = name.Split('-');
+            DirectoryPath = name;
+            ProblemId = int.Parse(nameSplit[0].Trim());
+            ProblemName = nameSplit[1].Trim();
+            {
+                StringBuilder sb = new StringBuilder();
+                do
+                {
+                    string s = sr.ReadNoncommentLine();
+                    if (!s.Equals("%%%"))
+                    {
+                        sb.AppendLine(s);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                } while (true);
+                ProblemDescription = sb.ToString();
+            }
+            InputParameter = Type.GetType(sr.ReadNoncommentLine());
+            MaxInputSize = int.Parse(sr.ReadNoncommentLine());
+            OutputParameter = Type.GetType(sr.ReadNoncommentLine());
+            SampleInputString = sr.ReadNoncommentLine();
+            SampleOutputString = sr.ReadNoncommentLine();
+
+            string isExampleInput;
+            if ((isExampleInput = sr.ReadNoncommentLine()) != null)
+            {
+                IsExample = bool.Parse(isExampleInput);
+            }
+
+            SampleInput = TestCasesGenerator.UnmarshalObject(InputParameter, SampleInputString);
+            SampleOutput = TestCasesGenerator.UnmarshalObject(OutputParameter, SampleOutputString);
+        }
 
         public override string ToString() {
             return string.Format("{5}Problem {0}: {1}\r\n\r\n{2}\r\n\r\nSample Input:\r\n{3}\r\n\r\nSample Output:\r\n{4}\r\n\r\nYour method must be public static named {1} in a class called MySolution.",
@@ -55,8 +93,8 @@ namespace ProblemSolver
             else
             {
                 var compiler = new CSharpCodeProvider();
-                string outparam = compiler.GetTypeOutput(new System.CodeDom.CodeTypeReference(outputParameter));
-                string inparam = compiler.GetTypeOutput(new System.CodeDom.CodeTypeReference(inputParameter));
+                string outparam = compiler.GetTypeOutput(new System.CodeDom.CodeTypeReference(OutputParameter));
+                string inparam = compiler.GetTypeOutput(new System.CodeDom.CodeTypeReference(InputParameter));
                 string defaultValue = " null";
                 if (outparam.Equals("bool"))
                 {
@@ -66,9 +104,9 @@ namespace ProblemSolver
                 {
                     defaultValue = " '\\0'";
                 }
-                else if (outputParameter.IsValueType)
+                else if (OutputParameter.IsValueType)
                 {
-                    defaultValue = string.Format(" {0}", Activator.CreateInstance(outputParameter));
+                    defaultValue = string.Format(" {0}", Activator.CreateInstance(OutputParameter));
                 }
 
                 return string.Format("public class MySolution {{\r\n    public static {0} {1}({2} input) {{\r\n        // TODO: Your code here\r\n        return{3};\r\n    }}\r\n}}",

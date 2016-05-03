@@ -1,5 +1,5 @@
 # Problem Description
-Often in code we want a function that will "translate" a character into an integer where $A = 0, B = 1, C = 2, D = 3, ..., Z = 25$. How can we implement this? Recall that characters are actually represented in the computer as a numeric value corresponding to the <a href="www.asciitable.com">ASCII table</a> (this is a bit of a simplification, but good enough for now). 
+Often in code we want a function that will "translate" a character into an integer where $A = 0, B = 1, C = 2, D = 3, ..., Z = 25$. How can we implement this? Recall that characters are actually represented in the computer as a numeric value corresponding to the <a href="http://www.asciitable.com/index/asciifull.gif">ASCII table</a> (this is a bit of a simplification, but good enough for now). 
 
 In the ASCII table, note that $A = 65, B = 66, C = 67, D = 68, ..., Z = 90$. So actually, we can subtract 65 from the ASCII value of our input, and get the correct answer! Even better, we can just sutract 'A' from the value of our input, since 'A' will translate to 65 as an integer value.
 
