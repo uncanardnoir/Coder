@@ -1,9 +1,9 @@
-This string does not need any escaping.
-This string?	Needs\some"escap'ing.
-'''\\\''""\'\'\'''????"?			
-	
-?
-\
-/
-!@#$%^&*(),.abcdefghijklmnopqrstuvwcxz0123456789
-!@#$%^&*(),.abcdefghijklmnopqrstuvwcxz0123456789,	"?\
+"This string does not need any escaping."
+"This string?	Needs\some"escap'ing."
+"'''\\\''""\'\'\'''????"?			"
+""	"
+"?"
+"\"
+"/"
+"!@#$%^&*(),.abcdefghijklmnopqrstuvwcxz0123456789"
+"!@#$%^&*(),.abcdefghijklmnopqrstuvwcxz0123456789,	"?\"

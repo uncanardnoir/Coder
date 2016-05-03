@@ -1,8 +1,8 @@
-madam
-dude
-duo
-gig
-hannah
-kook
-kayak
-croc
+"madam"
+"dude"
+"duo"
+"gig"
+"hannah"
+"kook"
+"kayak"
+"croc"

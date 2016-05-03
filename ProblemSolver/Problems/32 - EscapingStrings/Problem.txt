@@ -25,6 +25,6 @@ System.String
 # Output Parameter
 System.String
 # Sample Input
-Who said the quote, "Live free or die trying"?
+"Who said the quote, "Live free or die trying"?"
 # Sample Output
-Who said the quote, \"Live free or die trying\"\?
+"Who said the quote, \"Live free or die trying\"\?"

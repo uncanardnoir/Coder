@@ -10,6 +10,6 @@ System.String
 # Output Parameter
 System.Boolean
 # Sample Input
-server;reverse
+"server;reverse"
 # Sample Output
 false

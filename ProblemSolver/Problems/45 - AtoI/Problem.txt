@@ -1,0 +1,13 @@
+# Problem Description
+Write a method that takes a character as input. If the character represents a digit ('0' through '9'), return the integer value of that character (0 through 9). Otherwise return -1.
+%%%
+# Input Parameter
+System.Char
+# Max input size
+0
+# Output Parameter
+System.Int32
+# Sample Input
+'7'
+# Sample Output
+7

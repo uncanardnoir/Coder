@@ -8,6 +8,6 @@ System.String
 # Output Parameter
 System.Boolean
 # Sample Input
-ukulele
+"ukulele"
 # Sample Output
 true

@@ -70,6 +70,13 @@ namespace ProblemSolver
                     nextProblem.outputParameter = Type.GetType(sr.ReadNoncommentLine());
                     nextProblem.SampleInputString = sr.ReadNoncommentLine();
                     nextProblem.SampleOutputString = sr.ReadNoncommentLine();
+
+                    string isExample;
+                    if ((isExample = sr.ReadNoncommentLine()) != null)
+                    {
+                        nextProblem.IsExample = bool.Parse(isExample);
+                    }
+
                     nextProblem.SampleInput = TestCasesGenerator.UnmarshalObject(nextProblem.inputParameter, nextProblem.SampleInputString);
                     nextProblem.SampleOutput = TestCasesGenerator.UnmarshalObject(nextProblem.outputParameter, nextProblem.SampleOutputString);
                     nextProblem.IsSolved = SolvedProblems.Contains(nextProblem.ProblemId);
@@ -88,7 +95,7 @@ namespace ProblemSolver
                 }
                 else
                 {
-                    txtCodeEditor.Text = currentProblem.GenerateMethodStub();
+                    txtCodeEditor.Text = currentProblem.GenerateMethodStub(problemsRoot);
                 }
                 rtbOutputDisplay.Clear();
             }
@@ -344,7 +351,7 @@ namespace ProblemSolver
             {
                 if (currentProblem != null)
                 {
-                    txtCodeEditor.Text = currentProblem.GenerateMethodStub();
+                    txtCodeEditor.Text = currentProblem.GenerateMethodStub(problemsRoot);
                 }
                 else
                 {
@@ -437,6 +444,10 @@ namespace ProblemSolver
                 {
                     testCases = TestCasesGenerator.GenerateInts(solutionMethod, currentProblem.maxInputSize);
                 }
+                else if (currentProblem.inputParameter == typeof(char))
+                {
+                    testCases = TestCasesGenerator.GenerateChars(solutionMethod);
+                }
                 else
                 {
                     Debug.Assert(false);
@@ -501,7 +512,7 @@ namespace ProblemSolver
             {
                 rtbOutputDisplay.AppendText(string.Format("\r\nThe input was: {0}", tc.input.GetType() == typeof(Int32[]) ? string.Join(",", (Int32[])tc.input) : tc.input.ToString()), Color.Black, true);
                 rtbOutputDisplay.AppendText(string.Format("\r\nThe expected output was: {0}", tc.ExpectedOutput.ToString()), Color.Black, true);
-                rtbOutputDisplay.AppendText(string.Format("\r\nThe output from your method was: {0}", result.ToString()), Color.Black, true);
+                rtbOutputDisplay.AppendText(string.Format("\r\nThe output from your method was: {0}", result == null ? "(null)" : result.ToString()), Color.Black, true);
                 rtbOutputDisplay.AppendText(string.Format("\r\nSorry, your method did not pass this test case. [{0} seconds]", (double)elapsedMilliseconds / 1000), Color.Red, true);
                 waitingForResults = false;
                 txtCodeEditor.IsReadOnly = false;

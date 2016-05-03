@@ -1,0 +1,19 @@
+# Problem Description
+Often in code we want a function that will "translate" a character into an integer where $A = 0, B = 1, C = 2, D = 3, ..., Z = 25$. How can we implement this? Recall that characters are actually represented in the computer as a numeric value corresponding to the <a href="www.asciitable.com">ASCII table</a> (this is a bit of a simplification, but good enough for now). 
+
+In the ASCII table, note that $A = 65, B = 66, C = 67, D = 68, ..., Z = 90$. So actually, we can subtract 65 from the ASCII value of our input, and get the correct answer! Even better, we can just sutract 'A' from the value of our input, since 'A' will translate to 65 as an integer value.
+
+Study this sample method which takes an input of type character and returns an integer between 0 to 25 representing its value in the alphabet. Non-uppercase alphabet characters will return -1.
+%%%
+# Input Parameter
+System.Char
+# Max input size
+0
+# Output Parameter
+System.Int32
+# Sample Input
+G
+# Sample Output
+6
+# Example problem
+True

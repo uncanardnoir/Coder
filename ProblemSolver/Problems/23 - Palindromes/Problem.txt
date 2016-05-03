@@ -8,6 +8,6 @@ System.String
 # Output Parameter
 System.Boolean
 # Sample Input
-level
+"level"
 # Sample Output
 true

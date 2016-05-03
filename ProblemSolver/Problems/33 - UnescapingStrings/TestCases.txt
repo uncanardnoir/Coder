@@ -1,7 +1,7 @@
-The original string might\'ve had some \"funny punctuation\",\tbut I thought he\\she cleaned it up\?
-Now here\'s a string that has some \"escaping\"
-This string requires no unescaping
-This string is weird:\\\\\\\"\\\'\'\\\?\\\"\"\"
-\t\t\t\t\t\"Hello, World!\"
-What\?\?\?\?\?
-\?\?\?\"\"\'\'\'
+"The original string might\'ve had some \"funny punctuation\",\tbut I thought he\\she cleaned it up\?"
+"Now here\'s a string that has some \"escaping\""
+"This string requires no unescaping"
+"This string is weird:\\\\\\\"\\\'\'\\\?\\\"\"\""
+"\t\t\t\t\t\"Hello, World!\""
+"What\?\?\?\?\?"
+"\?\?\?\"\"\'\'\'"

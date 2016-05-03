@@ -8,6 +8,6 @@ System.String
 # Output Parameter
 System.String
 # Sample Input
-watermelon
+"watermelon"
 # Sample Output
-nolemretaw
+"nolemretaw"

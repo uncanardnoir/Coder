@@ -15,6 +15,6 @@ System.String
 # Output Parameter
 System.String
 # Sample Input
-The original string might\'ve had some \"funny punctuation\",\tbut I thought he\\she cleaned it up\?
+"The original string might\'ve had some \"funny punctuation\",\tbut I thought he\\she cleaned it up\?"
 # Sample Output
-The original string might've had some "funny punctuation",	but I thought he\she cleaned it up?
+"The original string might've had some "funny punctuation",	but I thought he\she cleaned it up?"

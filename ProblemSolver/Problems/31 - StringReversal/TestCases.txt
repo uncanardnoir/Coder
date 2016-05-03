@@ -1,8 +1,8 @@
-watermelon
-abracadabra
-polar bears
-aaaaa
-test case 5
-hammer
-abcdefghijklmnopqrstuvwxyz
-aAaAaAaAaAaAaaaaaaaaaaa
+"watermelon"
+"abracadabra"
+"polar bears"
+"aaaaa"
+"test case 5"
+"hammer"
+"abcdefghijklmnopqrstuvwxyz"
+"aAaAaAaAaAaAaaaaaaaaaaa"

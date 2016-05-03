@@ -10,6 +10,6 @@ System.String
 # Output Parameter
 System.Int32
 # Sample Input
-abcdeffedcba
+"abcdeffedcba"
 # Sample Output
 6

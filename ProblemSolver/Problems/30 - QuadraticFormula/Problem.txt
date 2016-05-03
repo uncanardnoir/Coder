@@ -8,6 +8,6 @@ System.String
 # Output Parameter
 System.Double
 # Sample Input
-2;5;-3
+"2;5;-3"
 # Sample Output
 0.5

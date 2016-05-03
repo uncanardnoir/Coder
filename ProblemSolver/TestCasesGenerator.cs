@@ -76,6 +76,20 @@ namespace ProblemSolver
             return testCases;
         }
 
+        public static List<TestCase> GenerateChars(MethodInfo solutionMethod)
+        {
+            List<TestCase> testCases = new List<TestCase>();
+
+            string testString = "CZQAazer2901.&^!\r\n\t";
+
+            foreach (char c in testString)
+            {
+                testCases.Add(new TestCase(c, solutionMethod.Invoke(null, new object[] { c })));
+            }
+
+            return testCases;
+        }
+
         public static List<TestCase> GenerateIntArray(MethodInfo solutionMethod, int maxLength, bool canBeZero = true, bool canBeNegative = true)
         {
             Debug.Assert(maxLength >= 10);
@@ -192,11 +206,17 @@ namespace ProblemSolver
             }
             else if (t == typeof(string))
             {
-                return obj.ToString();
+                string s = obj.ToString();
+                s = obj.Substring(1, s.Length - 2);
+                return s;
             }
             else if (t == typeof(double))
             {
                 return double.Parse(obj);
+            }
+            else if (t == typeof(char))
+            {
+                return ((string)obj)[1];
             }
             else
             {

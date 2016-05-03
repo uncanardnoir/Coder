@@ -1,8 +1,8 @@
-nngnghjgn
-mmmmmmmmmmjj
-mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-giggigigig
-hannah
-k
-jj
-palindrome
+"nngnghjgn"
+"mmmmmmmmmmjj"
+"mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
+"giggigigig"
+"hannah"
+"k"
+"jj"
+"palindrome"

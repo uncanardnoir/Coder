@@ -1,0 +1,13 @@
+# Problem Description
+Write a method that takes a character as input. If the character is an uppercase English letter ('A' through 'Z'), return the lowercase version of the same letter ('a' through 'z'). If it is not an uppercase English letter, return the original character.
+%%%
+# Input Parameter
+System.Char
+# Max input size
+0
+# Output Parameter
+System.Char
+# Sample Input
+G
+# Sample Output
+g

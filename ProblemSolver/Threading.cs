@@ -153,6 +153,10 @@ namespace ProblemSolver
             do
             {
                 s = sr.ReadLine();
+                if (s == null)
+                {
+                    return null;
+                }
             } while (s.TrimStart().StartsWith("#"));
             return s;
         }
