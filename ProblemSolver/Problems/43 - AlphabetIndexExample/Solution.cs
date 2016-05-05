@@ -1,5 +1,5 @@
 public class MySolution {
-    public static int AtoIExample(char input)
+    public static int AlphabetIndexExample(char input)
     {
         // If the character is either past the end of the alphabet, or before 
         // the beginning of the alphabet, it is invalid and we return -1
