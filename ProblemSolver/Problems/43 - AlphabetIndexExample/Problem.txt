@@ -12,7 +12,7 @@ System.Char
 # Output Parameter
 System.Int32
 # Sample Input
-G
+'G'
 # Sample Output
 6
 # Example problem

@@ -8,6 +8,6 @@ System.Char
 # Output Parameter
 System.Char
 # Sample Input
-G
+'G'
 # Sample Output
 g
