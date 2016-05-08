@@ -1,0 +1,13 @@
+# Problem Description
+Write a method that takes a string as an input. The input length will be 9 or less. You may assume that every character in the string is a number ('0' through '9'). Return the the integer value of the string.
+%%%
+# Input Parameter
+System.String
+# Max input size
+0
+# Output Parameter
+System.Int32
+# Sample Input
+"17923"
+# Sample Output
+17923

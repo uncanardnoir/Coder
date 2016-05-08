@@ -213,10 +213,10 @@
     <None Include="Problems\44 - ToLower\Solution.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Problems\45 - AtoI2\Solution.cs">
+    <None Include="Problems\45 - AtoI\Solution.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Problems\45 - AtoI\Solution.cs">
+    <None Include="Problems\46 - AtoI2\Solution.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Compile Include="Program.cs" />
@@ -433,13 +433,13 @@
     <None Include="Problems\44 - ToLower\Problem.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Problems\45 - AtoI2\Problem.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Problems\45 - AtoI\Problem.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Problems\45 - AtoI2\TestCases.txt">
+    <None Include="Problems\46 - AtoI2\Problem.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Problems\46 - AtoI2\TestCases.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="Problems\5 - StarryNumbers\Problem.txt">
