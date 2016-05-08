@@ -10,4 +10,4 @@ System.Char
 # Sample Input
 'G'
 # Sample Output
-g
+'g'
