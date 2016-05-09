@@ -1,0 +1,19 @@
+# Problem Description
+The $n^{th}$ triangle number is defined as $1 + 2 + 3 + ... + n$. The first few triangle numbers are:
+$1 = 1$
+$1 + 2 = 3$
+$1 + 2 + 3 = 6$
+$1 + 2 + 3 + 4 = 10$
+$1 + 2 + 3 + 4 + 5 = 15$
+We can see that the 5th triangle number is 15. Given an input number n which is less than 10,000, return the $n^{th}$ triangle number.
+%%%
+# Input Parameter
+System.Int32
+# Max input size
+0
+# Output Parameter
+System.Int32
+# Sample Input
+5
+# Sample Output
+15

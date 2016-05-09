@@ -1,0 +1,13 @@
+# Problem Description
+Recall from Problem 47 that the $n^{th}$ triangle number is defined as $1 + 2 + 3 + ... + n$. Given a number $k$, return true if $k$ is a triangle number, and false otherwise.
+%%%
+# Input Parameter
+System.Int32
+# Max input size
+0
+# Output Parameter
+System.Boolean
+# Sample Input
+15
+# Sample Output
+true
