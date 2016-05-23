@@ -1,0 +1,18 @@
+# Problem Description
+Postfix notation is a way of writing mathematical equations where the operator comes at the end of the operands, instead of the middle. For instance, instead of writing
+$3 + 5$
+We would instead write
+$3 5 +$
+As another example, $5 3 4 - *$ in postfix means $5 * (3 - 4)$ in our "standard" notation.
+Given a string where each character represents either a single-digit number 0 through 9 or one of three operations + - * and the string itself represents an expression in postfix notation, evaluate the expression.
+%%%
+# Input Parameter
+System.String
+# Max input size
+0
+# Output Parameter
+System.Int32
+# Sample Input
+"534-*"
+# Sample Output
+-5

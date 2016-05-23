@@ -1,0 +1,13 @@
+# Problem Description
+In the Price Is Right, contestants are shown an item and have to guess the value of the item. The one who guesses closest without going over is the winner. In this problem, assume the value of the item is $1000. Given an array of integers up to length 30, each of which represents one contestant's guess, where the first integer in the array is Contestant 0's guess, the second integer is Contestant 1's guess, etc. Return an integer representing which contestant won. For instance, if the guesses are [950, 980, 1001, 1010], the winning guess is 980, and the winning contestant is Contestant 1. If none of the contestants won (all of their guess are too high), return -1.
+%%%
+# Input Parameter
+System.Int32[]
+# Max input size
+0
+# Output Parameter
+System.Int32
+# Sample Input
+[950, 980, 1001, 1010]
+# Sample Output
+1
